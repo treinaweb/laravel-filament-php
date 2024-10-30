@@ -29,10 +29,13 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nome')
                     ->required(),
                 Forms\Components\TextInput::make('slug')
+                    ->label('Slug')
                     ->required(),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
+                    ->label('Descrição')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -44,8 +47,8 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nome')
-                    ->searchable()
-                    ->description(fn (Product $record): string => $record->description),
+                    ->searchable(),
+                    // ->description(fn (Product $record): string => $record->description),
                 Tables\Columns\TextColumn::make('slug')
                     ->icon('heroicon-o-key')
                     ->searchable(),
