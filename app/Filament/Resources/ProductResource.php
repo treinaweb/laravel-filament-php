@@ -61,7 +61,24 @@ class ProductResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: false),
             ])
             ->filters([
-               //
+               Filter::make('created_at')
+                    ->form([
+                        DatePicker::make('created_from')->label('Data inicial de criação'),
+                        DatePicker::make('created_until')->label('Data final de criação'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder =>
+                                $query->whereDate('created_at', '>=', $date)
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder =>
+                                $query->whereDate('created_at', '<=', $date)
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
