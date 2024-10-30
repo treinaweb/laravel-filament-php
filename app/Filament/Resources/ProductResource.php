@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use Filament\Forms\Components\Fieldset;
 
 class ProductResource extends Resource
 {
@@ -28,12 +29,15 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('Nome')
-                    ->required(),
-                Forms\Components\TextInput::make('slug')
-                    ->label('Slug')
-                    ->required(),
+                Fieldset::make('Informações básicas')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Nome')
+                            ->required(),
+                        Forms\Components\TextInput::make('slug')
+                            ->label('Slug')
+                            ->required(),
+                    ]),
                 Forms\Components\RichEditor::make('description')
                     ->label('Descrição')
                     ->required()
