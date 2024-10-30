@@ -36,7 +36,8 @@ class ProductResource extends Resource
                             ->required(),
                         Forms\Components\TextInput::make('slug')
                             ->label('Slug')
-                            ->required(),
+                            ->required()
+                            ->alphaDash(),
                     ]),
                 Forms\Components\RichEditor::make('description')
                     ->label('Descrição')
