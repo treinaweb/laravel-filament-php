@@ -15,6 +15,7 @@ use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\TextInput;
 
 class ProductResource extends Resource
 {
@@ -41,7 +42,12 @@ class ProductResource extends Resource
                     ]),
                 Forms\Components\Select::make('category_id')
                     ->label('Categoria do produto')
-                    ->relationship('category', 'name'),
+                    ->relationship('category', 'name')
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->label('Nome da categoria')
+                            ->required()
+                    ]),
                 Forms\Components\RichEditor::make('description')
                     ->label('Descrição')
                     ->required()
