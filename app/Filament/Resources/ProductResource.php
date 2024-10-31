@@ -39,6 +39,9 @@ class ProductResource extends Resource
                             ->required()
                             ->alphaDash(),
                     ]),
+                Forms\Components\Select::make('category_id')
+                    ->label('Categoria do produto')
+                    ->relationship('category', 'name'),
                 Forms\Components\RichEditor::make('description')
                     ->label('Descrição')
                     ->required()
@@ -57,6 +60,8 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->icon('heroicon-o-key')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Categoria'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Criado em')
                     ->dateTime('d/m/Y h:i')
