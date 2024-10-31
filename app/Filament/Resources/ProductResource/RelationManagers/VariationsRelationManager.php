@@ -11,6 +11,7 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Columns\ImageColumn;
 
 class VariationsRelationManager extends RelationManager
 {
@@ -41,6 +42,7 @@ class VariationsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
+                ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nome'),
                 Tables\Columns\TextColumn::make('description')
