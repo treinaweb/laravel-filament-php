@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Filament\Resources\ProductResource\RelationManagers\VariationsRelationManager;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\TextInput;
 
@@ -112,7 +113,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            VariationsRelationManager::class
         ];
     }
 
